@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Etapa</title>
+</head>
+<body>
+    <h1>Calculadora de Etapa</h1>
+
+    <label for="fechaConsulta">Selecciona una fecha:</label>
+    <input type="date" id="fechaConsulta" name="fechaConsulta">
+
+    <button onclick="calcularEtapa()">Calcular Etapa</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function calcularEtapa() {
+            const fechaConsulta = document.getElementById("fechaConsulta").value;
+
+            if (!fechaConsulta) {
+                alert("Por favor selecciona una fecha.");
+                return;
+            }
+
+            fetch(`https://localhost:44301/api/HolaMundo/calcular-etapa?fechaConsulta=${fechaConsulta}`)
+                .then(response => {
+                    if (!response.ok) throw new Error("Error en la respuesta de la API");
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById("resultado").innerText = `Resultado: ${data.mensaje}`;
+                })
+                .catch(error => {
+                    console.error("Error al calcular la etapa:", error);
+                    document.getElementById("resultado").innerText = "Ocurrió un error al calcular la etapa";
+                });
+        }
+    </script>
+</body>
+</html>
