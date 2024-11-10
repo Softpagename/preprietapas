@@ -16,26 +16,38 @@
 </head>
 <body>
     <h1>Calcular Etapa</h1>
-    <label for="fechaConsulta">Ingresa una fecha (formato DD-MM-YYYY):</label>
-    <input type="date" id="fechaConsulta">
+    
+    <label for="dia">Día:</label>
+    <input type="number" id="dia" min="1" max="31">
+    
+    <label for="mes">Mes:</label>
+    <input type="number" id="mes" min="1" max="12">
+    
+    <label for="anio">Año:</label>
+    <input type="number" id="anio" min="1900" max="2100">
+    
     <button onclick="mostrarResultado()">Calcular</button>
 
     <p id="resultado"></p>
 
     <script>
         function mostrarResultado() {
-            const fechaConsulta = document.getElementById("fechaConsulta").value;
-            if (!fechaConsulta) {
-                alert("Por favor ingresa una fecha.");
+            const dia = parseInt(document.getElementById("dia").value);
+            const mes = parseInt(document.getElementById("mes").value) - 1; // Los meses en JS son 0-indexados
+            const anio = parseInt(document.getElementById("anio").value);
+
+            // Validar que los campos están completos
+            if (isNaN(dia) || isNaN(mes) || isNaN(anio) || dia < 1 || mes < 0 || mes > 11 || anio < 1900 || anio > 2100) {
+                alert("Por favor ingresa una fecha válida.");
                 return;
             }
 
+            const fechaConsulta = new Date(anio, mes, dia);
             const mensaje = calcularEtapa(fechaConsulta);
             document.getElementById("resultado").innerText = `Resultado: ${mensaje}`;
         }
 
-        function calcularEtapa(fechaConsultaStr) {
-            const fechaConsulta = new Date(fechaConsultaStr);
+        function calcularEtapa(fechaConsulta) {
             let mensaje;
 
             if (fechaConsulta >= new Date(2024, 6, 1) && fechaConsulta <= new Date(2025, 5, 30)) {
