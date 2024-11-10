@@ -1,15 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcular Etapa</title>
+    <style>
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>Calcular Etapa</h1>
     <label for="fechaConsulta">Ingresa una fecha (formato DD-MM-YYYY):</label>
-    <input type="text" id="fechaConsulta" placeholder="DD-MM-YYYY">
+    <input type="date" id="fechaConsulta">
     <button onclick="mostrarResultado()">Calcular</button>
 
     <p id="resultado"></p>
@@ -19,13 +27,6 @@
             const fechaConsulta = document.getElementById("fechaConsulta").value;
             if (!fechaConsulta) {
                 alert("Por favor ingresa una fecha.");
-                return;
-            }
-
-            // Validar formato de fecha (YYYY-MM-DD)
-            const regex = /^\d{4}-\d{2}-\d{2}$/;
-            if (!regex.test(fechaConsulta)) {
-                alert("Por favor ingresa una fecha válida en formato YYYY-MM-DD.");
                 return;
             }
 
