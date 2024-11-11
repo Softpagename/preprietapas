@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcular Etapa</title>
     <style>
+        /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
@@ -14,7 +15,6 @@
             height: 100vh;
             margin: 0;
         }
-
         .container {
             background-color: #fff;
             padding: 20px 30px;
@@ -23,27 +23,23 @@
             max-width: 400px;
             width: 100%;
         }
-
         h1 {
             font-size: 24px;
             text-align: center;
             margin-bottom: 20px;
         }
-
         label {
             display: block;
             font-weight: bold;
             margin-bottom: 5px;
             text-align: left;
         }
-
         .label-simple {
-            font-weight: normal; /* Sin negrita */
+            font-weight: normal;
             margin-top: -10px;
             font-size: 14px;
             color: #666;
         }
-
         input[type="text"] {
             width: 100%;
             padding: 10px;
@@ -52,29 +48,39 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-
-        .btn-calculate {
+        .btn-calculate, .btn-reset {
             display: block;
             width: 100%;
             padding: 12px;
             font-size: 16px;
             font-weight: bold;
-            background-color: #28a745;
             color: #fff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             margin-top: 10px;
         }
-
+        .btn-calculate {
+            background-color: #28a745;
+        }
         .btn-calculate:hover {
             background-color: #218838;
         }
-
+        .btn-reset {
+            background-color: #dc3545;
+        }
+        .btn-reset:hover {
+            background-color: #c82333;
+        }
         #resultado {
             margin-top: 20px;
             font-size: 18px;
             font-weight: bold;
+            text-align: center;
+        }
+        #edad {
+            font-size: 16px;
+            color: #555;
             text-align: center;
         }
     </style>
@@ -82,20 +88,20 @@
 <body>
     <div class="container">
         <h1>Calcular Etapa</h1>
-        
         <label for="fecha">Fecha de Nacimiento:</label>
         <input type="text" id="fecha" placeholder="dd/mm/yyyy" oninput="mascaraFecha(this)">
-        
-        <!-- Label sin estilo de negrita -->
         <label class="label-simple">Ejemplo de fecha: "02/02/2024"</label>    
 
         <button class="btn-calculate" onclick="mostrarResultado()">Calcular</button>
+        <button class="btn-reset" onclick="nuevoCalculo()">Nuevo Cálculo</button>
+
         <p id="resultado"></p>
+        <p id="edad"></p>
     </div>
 
     <script>
         function mascaraFecha(input) {
-            let valor = input.value.replace(/\D/g, ''); // Eliminar caracteres no numéricos
+            let valor = input.value.replace(/\D/g, '');
             if (valor.length >= 2) valor = valor.slice(0, 2) + '/' + valor.slice(2);
             if (valor.length >= 5) valor = valor.slice(0, 5) + '/' + valor.slice(5, 9);
             input.value = valor;
@@ -105,7 +111,6 @@
             const fechaInput = document.getElementById("fecha").value;
             const [dia, mes, anio] = fechaInput.split('/').map(Number);
 
-            // Validación de fecha
             if (!dia || !mes || !anio || dia < 1 || dia > 31 || mes < 1 || mes > 12 || anio < 1900 || anio > 2100) {
                 alert("Por favor ingresa una fecha válida.");
                 return;
@@ -113,12 +118,14 @@
 
             const fechaConsulta = new Date(anio, mes - 1, dia);
             const mensaje = calcularEtapa(fechaConsulta);
+            const edad = calcularEdadYMeses(fechaConsulta);
+
             document.getElementById("resultado").innerText = `Resultado: ${mensaje}`;
+            document.getElementById("edad").innerText = `Edad: ${edad}`;
         }
 
         function calcularEtapa(fechaConsulta) {
             let mensaje;
-
             if (fechaConsulta >= new Date(2024, 6, 1) && fechaConsulta <= new Date(2025, 5, 30)) {
                 mensaje = "Etapa 0 'A'";
             } else if (fechaConsulta >= new Date(2023, 6, 1) && fechaConsulta <= new Date(2024, 5, 30)) {
@@ -139,6 +146,25 @@
                 mensaje = "Fecha fuera de los rangos especificados";
             }
             return mensaje;
+        }
+
+        function calcularEdadYMeses(fechaConsulta) {
+            const fechaActual = new Date();
+            let años = fechaActual.getFullYear() - fechaConsulta.getFullYear();
+            let meses = fechaActual.getMonth() - fechaConsulta.getMonth();
+
+            if (meses < 0) {
+                años--;
+                meses += 12;
+            }
+
+            return `${años} años con ${meses} meses`;
+        }
+
+        function nuevoCalculo() {
+            document.getElementById("fecha").value = '';
+            document.getElementById("resultado").innerText = '';
+            document.getElementById("edad").innerText = '';
         }
     </script>
 </body>
