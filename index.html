@@ -96,6 +96,8 @@
 </head>
 <body>
     <div class="container">
+        <h1>DIDEDUQ</h1>
+        <h1>Quetzaltenango</h1>
         <h1>Calcular Etapa</h1>
         <label for="fecha">Fecha de Nacimiento:</label>
         <input type="text" id="fecha" placeholder="dd/mm/yyyy" oninput="mascaraFecha(this)">
@@ -173,7 +175,7 @@ if (fechaConsulta >= new Date(2021, 3, 1) && fechaConsulta <= new Date(2022, 2, 
             return mensaje;
         }
 
-        function calcularEdadYMeses(fechaConsulta) {
+       /* function calcularEdadYMeses(fechaConsulta) {
             const fechaActual = new Date();
             let años = fechaActual.getFullYear() - fechaConsulta.getFullYear();
             let meses = fechaActual.getMonth() - fechaConsulta.getMonth();
@@ -185,6 +187,30 @@ if (fechaConsulta >= new Date(2021, 3, 1) && fechaConsulta <= new Date(2022, 2, 
 
             return `${años} años con ${meses} meses`;
         }
+*/
+        function calcularEdadYMeses(fechaConsulta) {
+    const fechaActual = new Date();
+
+    let años = fechaActual.getFullYear() - fechaConsulta.getFullYear();
+    let meses = fechaActual.getMonth() - fechaConsulta.getMonth();
+    let dias = fechaActual.getDate() - fechaConsulta.getDate();
+
+    // Si los días son negativos, tomamos prestado un mes
+    if (dias < 0) {
+        meses--;
+        // Obtenemos el número de días del mes anterior
+        const mesAnterior = new Date(fechaActual.getFullYear(), fechaActual.getMonth(), 0);
+        dias += mesAnterior.getDate();
+    }
+
+    // Si los meses son negativos, tomamos prestado un año
+    if (meses < 0) {
+        años--;
+        meses += 12;
+    }
+
+    return `${años} años, ${meses} meses y ${dias} días`;
+}
 
         function nuevoCalculo() {
             document.getElementById("fecha").value = '';
