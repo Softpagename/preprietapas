@@ -135,7 +135,7 @@
 
         function calcularEtapa(fechaConsulta) {
             let mensaje;
-            if (fechaConsulta >= new Date(2024, 6, 1) && fechaConsulta <= new Date(2025, 5, 30)) {
+            /*if (fechaConsulta >= new Date(2024, 6, 1) && fechaConsulta <= new Date(2025, 5, 30)) {
                 mensaje = "Etapa 0 'A'";
             } else if (fechaConsulta >= new Date(2023, 6, 1) && fechaConsulta <= new Date(2024, 5, 30)) {
                 mensaje = "Etapa 1 'B'";
@@ -143,17 +143,33 @@
                 mensaje = "Etapa 2 'C'";
             } else if (fechaConsulta >= new Date(2021, 6, 1) && fechaConsulta <= new Date(2022, 5, 30)) {
                 mensaje = "Etapa 3 'D'";
-            } else if (fechaConsulta >= new Date(2020, 6, 1) && fechaConsulta <= new Date(2021, 5, 30)) {
+            } else 
+           if (fechaConsulta >= new Date(2021, 4, 1) && fechaConsulta <= new Date(2022, 3, 30)) {
                 mensaje = "Párvulos 1 (4 años)";
-            } else if (fechaConsulta >= new Date(2019, 6, 1) && fechaConsulta <= new Date(2020, 5, 30)) {
+            } else if (fechaConsulta >= new Date(2020, 04, 1) && fechaConsulta <= new Date(2021, 3, 30)) {
                 mensaje = "Párvulos 2 (5 años)";
-            } else if (fechaConsulta >= new Date(2018, 6, 1) && fechaConsulta <= new Date(2019, 5, 30)) {
+            } else if (fechaConsulta >= new Date(2019, 4, 1) && fechaConsulta <= new Date(2020, 3, 30)) {
                 mensaje = "Párvulos 3 (6 años)";
-            } else if (fechaConsulta >= new Date(2017, 6, 1) && fechaConsulta <= new Date(2018, 5, 30)) {
+            } else if (fechaConsulta >= new Date(2018, 7, 1) && fechaConsulta <= new Date(2019, 6, 30)) {
                 mensaje = "Ingreso a primero primaria";
             } else {
                 mensaje = "Fecha fuera de los rangos especificados";
             }
+*/
+            
+if (fechaConsulta >= new Date(2021, 3, 1) && fechaConsulta <= new Date(2022, 2, 30)) {
+    mensaje = "Párvulos 1 (4 años)";
+  } else if (fechaConsulta >= new Date(2020, 3, 1) && fechaConsulta <= new Date(2021, 2, 30)) {
+    mensaje = "Párvulos 2 (5 años)";
+  } else if (fechaConsulta >= new Date(2019, 3, 1) && fechaConsulta <= new Date(2020, 2, 30)) {
+    mensaje = "Párvulos 3 (6 años)";
+  } else if (fechaConsulta >= new Date(2018, 6, 1) && fechaConsulta <= new Date(2019, 5, 30)) {
+    mensaje = "Ingreso a primero primaria";
+  } else {
+    mensaje = "Fecha fuera de los rangos especificados";
+  }
+
+            
             return mensaje;
         }
 
