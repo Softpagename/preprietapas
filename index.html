@@ -134,29 +134,37 @@
             document.getElementById("edad").innerText = `Edad: ${edad}`;
         }
 
-        function calcularEtapa(fechaConsulta) {
-            let mensaje;
-            /*if (fechaConsulta >= new Date(2024, 6, 1) && fechaConsulta <= new Date(2025, 5, 30)) {
-                mensaje = "Etapa 0 'A'";
-            } else if (fechaConsulta >= new Date(2023, 6, 1) && fechaConsulta <= new Date(2024, 5, 30)) {
-                mensaje = "Etapa 1 'B'";
-            } else if (fechaConsulta >= new Date(2022, 6, 1) && fechaConsulta <= new Date(2023, 5, 30)) {
-                mensaje = "Etapa 2 'C'";
-            } else if (fechaConsulta >= new Date(2021, 6, 1) && fechaConsulta <= new Date(2022, 5, 30)) {
-                mensaje = "Etapa 3 'D'";
-            } else 
-           if (fechaConsulta >= new Date(2021, 4, 1) && fechaConsulta <= new Date(2022, 3, 30)) {
-                mensaje = "Párvulos 1 (4 años)";
-            } else if (fechaConsulta >= new Date(2020, 04, 1) && fechaConsulta <= new Date(2021, 3, 30)) {
-                mensaje = "Párvulos 2 (5 años)";
-            } else if (fechaConsulta >= new Date(2019, 4, 1) && fechaConsulta <= new Date(2020, 3, 30)) {
-                mensaje = "Párvulos 3 (6 años)";
-            } else if (fechaConsulta >= new Date(2018, 7, 1) && fechaConsulta <= new Date(2019, 6, 30)) {
-                mensaje = "Ingreso a primero primaria";
-            } else {
-                mensaje = "Fecha fuera de los rangos especificados";
-            }
-*/
+function calcularEtapa(fechaConsulta) {
+    let mensaje;
+
+    // Párvulos 1 - 4 Años cumplidos
+    if (fechaConsulta >= new Date(2021, 6, 1) && fechaConsulta <= new Date(2022, 5, 30)) {
+        mensaje = "Párvulos 1 (4 años cumplidos)";
+    }
+    // Párvulos 2 - 5 Años cumplidos
+    else if (fechaConsulta >= new Date(2020, 6, 1) && fechaConsulta <= new Date(2021, 5, 30)) {
+        mensaje = "Párvulos 2 (5 años cumplidos)";
+    }
+    // Párvulos 3 - 6 Años cumplidos / Preprimaria bilingüe
+    else if (fechaConsulta >= new Date(2019, 6, 1) && fechaConsulta <= new Date(2020, 5, 30)) {
+        mensaje = "Párvulos 3 (6 años cumplidos) / Preprimaria Bilingüe";
+    }
+    // Ingreso a Primero Primaria
+    else if (fechaConsulta >= new Date(2018, 6, 1) && fechaConsulta <= new Date(2019, 5, 30)) {
+        mensaje = "Ingreso a Primero Primaria";
+    }
+    else {
+        mensaje = "Fecha fuera de los rangos especificados";
+    }
+
+    return mensaje;
+}
+
+
+
+        
+     /*   function calcularEtapa(fechaConsulta) {
+            let mensaje;           
             
 if (fechaConsulta >= new Date(2021, 3, 1) && fechaConsulta <= new Date(2022, 2, 30)) {
     mensaje = "Párvulos 1 (4 años)";
@@ -169,24 +177,10 @@ if (fechaConsulta >= new Date(2021, 3, 1) && fechaConsulta <= new Date(2022, 2, 
   } else {
     mensaje = "Fecha fuera de los rangos especificados";
   }
-
-            
             return mensaje;
         }
 
-       /* function calcularEdadYMeses(fechaConsulta) {
-            const fechaActual = new Date();
-            let años = fechaActual.getFullYear() - fechaConsulta.getFullYear();
-            let meses = fechaActual.getMonth() - fechaConsulta.getMonth();
-
-            if (meses < 0) {
-                años--;
-                meses += 12;
-            }
-
-            return `${años} años con ${meses} meses`;
-        }
-*/
+      */
         function calcularEdadYMeses(fechaConsulta) {
     const fechaActual = new Date();
 
